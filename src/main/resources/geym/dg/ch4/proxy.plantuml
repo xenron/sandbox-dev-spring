@@ -1,0 +1,11 @@
+@startuml
+BeanFactory <|-- ClassPathXmlApplicationContext
+BeanFactory <|-- DefaultListableBeanFactory
+
+ClassPathXmlApplicationContext ..>  DefaultListableBeanFactory :代理
+
+interface BeanFactory
+class ClassPathXmlApplicationContext{
+ - DefaultListableBeanFactory beanFactory
+}
+@enduml

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" default-lazy-init="true">
+
+  <bean id="level1" class="geym.dg.ch5.limited.LimitedClassPathXmlApplicationContext">
+    <constructor-arg>
+      <list>
+        <value>classpath*:geym/dg/ch5/limited/level1-spring.xml</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  
+   <bean id="level2" class="geym.dg.ch5.limited.LimitedClassPathXmlApplicationContext" >
+     <constructor-arg>
+      <list>
+        <ref bean="level1" />
+      </list>
+    </constructor-arg>
+    <constructor-arg>
+      <list>
+        <value>classpath*:geym/dg/ch5/limited/level2-spring.xml</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  
+   <bean id="level3" class="geym.dg.ch5.limited.LimitedClassPathXmlApplicationContext" >
+     <constructor-arg>
+      <list>
+        <ref bean="level2" />
+        <ref bean="level1" />
+      </list>
+    </constructor-arg>
+    <constructor-arg>
+      <list>
+        <value>classpath*:geym/dg/ch5/limited/level3-spring.xml</value>
+      </list>
+    </constructor-arg>
+  </bean>
+  
+</beans>

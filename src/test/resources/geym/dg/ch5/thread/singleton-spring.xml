@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="helloBean" class="geym.dg.ch5.limited.HelloWorld">
+		<property name="name" value="Mkyong" />
+	</bean>
+
+	<bean id="helloBeanN" class="geym.dg.ch5.limited.HelloWorld"
+		scope="prototype">
+		<property name="name" value="Mkyong" />
+	</bean>
+
+	<bean id="helloBeanT" class="geym.dg.ch5.limited.HelloWorld"
+		scope="thread">
+		<property name="name" value="Mkyong" />
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="thread">
+					<bean class="org.springframework.context.support.SimpleThreadScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
