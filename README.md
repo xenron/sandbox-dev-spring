@@ -2,6 +2,7 @@
 mvn eclipse:eclipse
 
 # create idea project by maven
+mvn idea:idea
 
 # create eclipse project by gradle
 
