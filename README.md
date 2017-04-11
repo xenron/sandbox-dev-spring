@@ -5,6 +5,10 @@ mvn eclipse:eclipse
 mvn idea:idea
 
 # create eclipse project by gradle
+gradle eclipse
 
 # create idea project by gradle
+gradle idea
 
+# publish
+gradle publish
