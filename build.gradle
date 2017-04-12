@@ -29,17 +29,25 @@ repositories {
 sourceSets {
   main {
     java {
-        srcDir 'src'
+      srcDirs = ['src/main/java']
+    }
+    resources {
+      srcDirs = ['src/main/resources']
     }
   }
   test {
     java {
-        srcDir 'src'
+      srcDirs = ['src/test/java']
+    }
+    resources {
+      srcDirs = ['src/test/resources']
     }
   }
 }
 
 dependencies {
+  compile("javax.validation:validation-api:${javaxValidationVersion}")
+
   compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
 
   compile("org.springframework:spring-context:${springVersion}")
@@ -58,18 +66,17 @@ dependencies {
   compile("org.springframework:spring-websocket:${springVersion}"){
     exclude group: 'commons-logging', module: 'commons-logging'
   }
-  compile("junit:junit:${junitVersion}")
-  compile("org.springframework:spring-test:${springVersion}"){
-    exclude group: 'commons-logging', module: 'commons-logging'
-  }
+  //compile("junit:junit:${junitVersion}")
+  //compile("org.springframework:spring-test:${springVersion}"){
+  //  exclude group: 'commons-logging', module: 'commons-logging'
+  //}
+  compile("org.springframework.boot:spring-boot:${springbootVersion}")
+  compile("org.springframework.boot:spring-boot-autoconfigure:${springbootVersion}")
   
-  compile group: 'cglib', name: 'cglib', version: '3.2.5'
-  compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
-  compile group: 'org.springframework.boot', name: 'spring-boot', version: '1.5.2.RELEASE'
-  compile group: 'org.objenesis', name: 'objenesis', version: '2.5.1'
-  compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
-  compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '1.5.2.RELEASE'
-
+  compile("cglib:cglib:${cglibVersion}")
+  compile("org.objenesis:objenesis:${objenesisVersion}")
+  compile("joda-time:joda-time:${jodaTimeVersion}")
+  
   // testCompile group: 'junit', name: 'junit', version: '4.+'
   testCompile("junit:junit:${junitVersion}")
   testCompile("org.hamcrest:hamcrest-all:${hamcrestVersion}")
@@ -88,13 +95,43 @@ dependencies {
 }
 
 test {
-    systemProperties 'property': 'value'
+  systemProperties 'property': 'value'
+  // enable TestNG support (default is JUnit)
+  // useTestNG()
+
+  // set a system property for the test JVM(s)
+  systemProperty 'some.prop', 'value'
+
+  // explicitly include or exclude tests
+  // include 'org/foo/**'
+  // exclude 'org/boo/**'
+  include 'geym/dg/ch5/scope/**'
+
+  // show standard out and standard error of the test JVM(s) on the console
+  testLogging.showStandardStreams = true
+
+  // set heap size for the test JVM(s)
+  minHeapSize = "128m"
+  maxHeapSize = "512m"
+
+  // set JVM arguments for the test JVM(s)
+  jvmArgs '-XX:MaxPermSize=256m'
+
+  // listen to events in the test execution lifecycle
+  beforeTest { descriptor ->
+    logger.lifecycle("Running test: " + descriptor)
+  }
+
+  // listen to standard out and standard error of the test JVM(s)
+  onOutput { descriptor, event ->
+    logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+  }
 }
 
 uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
+  repositories {
+    flatDir {
+      dirs 'repos'
     }
+  }
 }
