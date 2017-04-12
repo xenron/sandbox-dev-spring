@@ -1,5 +1,6 @@
 /target/
-.settings/
+/build/
+/.settings/
 .gradle/
 .classpath
 .project
@@ -7,3 +8,4 @@
 *.ipr
 *.iws
 .DS_Store
+

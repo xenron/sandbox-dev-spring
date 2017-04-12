@@ -15,14 +15,28 @@ targetCompatibility = 1.8
 
 version = '1.0'
 jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                   'Implementation-Version': version
-    }
+  manifest {
+    attributes 'Implementation-Title': 'Gradle Quickstart',
+               'Implementation-Version': version
+  }
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
+  jcenter()
+}
+
+sourceSets {
+  main {
+    java {
+        srcDir 'src'
+    }
+  }
+  test {
+    java {
+        srcDir 'src'
+    }
+  }
 }
 
 dependencies {
@@ -44,6 +58,17 @@ dependencies {
   compile("org.springframework:spring-websocket:${springVersion}"){
     exclude group: 'commons-logging', module: 'commons-logging'
   }
+  compile("junit:junit:${junitVersion}")
+  compile("org.springframework:spring-test:${springVersion}"){
+    exclude group: 'commons-logging', module: 'commons-logging'
+  }
+  
+  compile group: 'cglib', name: 'cglib', version: '3.2.5'
+  compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+  compile group: 'org.springframework.boot', name: 'spring-boot', version: '1.5.2.RELEASE'
+  compile group: 'org.objenesis', name: 'objenesis', version: '2.5.1'
+  compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
+  compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '1.5.2.RELEASE'
 
   // testCompile group: 'junit', name: 'junit', version: '4.+'
   testCompile("junit:junit:${junitVersion}")

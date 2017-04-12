@@ -1,14 +1,28 @@
-# create eclipse project by maven
+# Maven
+
+```
+# create eclipse project
 mvn eclipse:eclipse
 
-# create idea project by maven
+# create idea project
 mvn idea:idea
+```
 
-# create eclipse project by gradle
+# Gradle
+
+```
+# create eclipse project
 gradle eclipse
 
-# create idea project by gradle
+# create idea project
 gradle idea
+
+# test
+gradle test
 
 # publish
 gradle publish
+
+```
+
+
