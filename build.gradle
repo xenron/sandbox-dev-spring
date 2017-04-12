@@ -66,18 +66,13 @@ dependencies {
   compile("org.springframework:spring-websocket:${springVersion}"){
     exclude group: 'commons-logging', module: 'commons-logging'
   }
-  //compile("junit:junit:${junitVersion}")
-  //compile("org.springframework:spring-test:${springVersion}"){
-  //  exclude group: 'commons-logging', module: 'commons-logging'
-  //}
   compile("org.springframework.boot:spring-boot:${springbootVersion}")
   compile("org.springframework.boot:spring-boot-autoconfigure:${springbootVersion}")
-  
+
   compile("cglib:cglib:${cglibVersion}")
   compile("org.objenesis:objenesis:${objenesisVersion}")
   compile("joda-time:joda-time:${jodaTimeVersion}")
-  
-  // testCompile group: 'junit', name: 'junit', version: '4.+'
+
   testCompile("junit:junit:${junitVersion}")
   testCompile("org.hamcrest:hamcrest-all:${hamcrestVersion}")
   testCompile("org.mockito:mockito-core:${mockitoVersion}"){
